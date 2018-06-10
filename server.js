@@ -3,11 +3,14 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.port || 8080;
+const routes = require('./Routes/demo');
 
-app.get('/api/hello', (req, res) => {
-    res.send({ express: 'Hello From Express' });
-  });
-  
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+
+app.use(routes.app);
+
 
 
 app.listen(port, () => {
